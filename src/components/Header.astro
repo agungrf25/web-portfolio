@@ -22,7 +22,7 @@ const links = [
 
     <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
       {links.map((link) => (
-        <a href={link.href} class:list={[{ active: active === link.id }]}>{link.label}</a>
+        <a href={link.href} data-nav-id={link.id} class:list={[{ active: active === link.id }]}>{link.label}</a>
       ))}
     </nav>
 

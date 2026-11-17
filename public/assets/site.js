@@ -53,6 +53,74 @@
   });
 
   nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  // Dynamic active navigation
+  const navLinks = nav
+    ? Array.from(nav.querySelectorAll('[data-nav-id]'))
+    : [];
+
+  const trackedIds = new Set(['about', 'focus', 'contact']);
+
+  const setActiveNav = (id) => {
+    navLinks.forEach((link) => {
+      const isActive = link.dataset.navId === id;
+
+      link.classList.toggle('active', isActive);
+
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  // Update when navigation is clicked
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      const id = link.dataset.navId;
+      if (trackedIds.has(id)) setActiveNav(id);
+    });
+  });
+
+  // Update when URL hash changes
+  const syncFromHash = () => {
+    const id = window.location.hash.slice(1);
+
+    if (trackedIds.has(id) && document.getElementById(id)) {
+      setActiveNav(id);
+    }
+  };
+
+  window.addEventListener('hashchange', syncFromHash);
+
+  // Update based on the section visible while scrolling
+  const sections = [...trackedIds]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible) {
+          setActiveNav(visible.target.id);
+        }
+      },
+      {
+        rootMargin: '-25% 0px -55% 0px',
+        threshold: [0, 0.1, 0.25, 0.5]
+      }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  }
+
+  syncFromHash();
+
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
   });

@@ -3,9 +3,9 @@
  * Ganti placeholder, email, tautan, dan deskripsi dengan informasi milikmu.
  */
 export const site = {
-  name: '[Nama Anda]',
+  name: 'Ramadhan Agung Rifai',
   shortName: 'NET//',
-  role: 'Network Enthusiast · Engineer',
+  role: 'Network Enthusiast',
   location: 'Indonesia',
   email: 'hello@yourdomain.com',
   domain: import.meta.env.SITE || 'https://yourdomain.com',
