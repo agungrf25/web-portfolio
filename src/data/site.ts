@@ -16,8 +16,8 @@ export const site = {
     'Saya tertarik pada bagaimana jaringan, keamanan, dan infrastruktur bekerja sebagai satu kesatuan. Di sini saya mendokumentasikan hal-hal yang saya pelajari, lab yang saya eksplorasi, serta insight teknis yang mungkin berguna untuk orang lain.',
   availability: 'Terbuka untuk diskusi teknis',
   socials: [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-profile', short: 'in' },
-    { label: 'GitHub', href: 'https://github.com/your-username', short: 'gh' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ramadhan-agung-rifai', short: 'in' },
+    { label: 'GitHub', href: 'https://github.com/agungrf25', short: 'gh' },
   ],
 };
 
@@ -53,7 +53,7 @@ export const projects = [
     kind: 'Security Lab',
     description:
       'Eksplorasi pendekatan akses berbasis identitas, policy, device posture, dan konektivitas private application.',
-    stack: ['Cloudflare One', 'ZTNA', 'Access', 'WARP'],
+    stack: ['Cloudflare One', 'ZTNA', 'WARP'],
     mark: 'ZT',
   },
   {
@@ -62,7 +62,7 @@ export const projects = [
     kind: 'Monitoring Lab',
     description:
       'Catatan eksperimen untuk memahami komunikasi antarperangkat, pola trafik, anomali, dan alur investigasi.',
-    stack: ['ExtraHop', 'Traffic Analysis', 'NDR', 'Logs'],
+    stack: ['ExtraHop', 'NPM', 'NDR'],
     mark: 'NV',
   },
   {
@@ -71,18 +71,16 @@ export const projects = [
     kind: 'Infrastructure Lab',
     description:
       'Eksplorasi infrastruktur jaringan, switching, wireless, virtualisasi, dan komunikasi enterprise.',
-    stack: ['Ruckus', 'Avaya', 'VMware', 'Sangfor'],
+    stack: ['Avaya', 'Ruckus', 'Sophos'],
     mark: 'EN',
   },
 ];
 
 export const toolset = [
-  'Sophos',
-  'Cloudflare',
-  'Ruckus',
-  'ExtraHop',
   'Avaya',
-  'Palo Alto Cortex XDR',
-  'VMware',
-  'Sangfor HCI',
+  'Cloudflare',
+  'ExtraHop',
+  'Palo Alto',
+  'Ruckus',
+  'Sophos',
 ];
