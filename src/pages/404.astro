@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout title="404 — Halaman tidak ditemukan" description="Halaman tidak ditemukan.">
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div class="section-kicker"><span>404</span><span>— NOT FOUND</span></div>
+      <h1>Halaman tidak<br /><em>ditemukan.</em></h1>
+      <p>Alamat yang kamu buka mungkin sudah berubah atau tidak tersedia.</p>
+      <p><a class="button button-primary" href={withBase('/')}>Kembali ke beranda ↗</a></p>
+    </div>
+  </section>
+</BaseLayout>

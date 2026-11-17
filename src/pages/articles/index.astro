@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../../utils/paths';
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const dateLabel = (date: Date) => new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
+---
+<BaseLayout title="Catatan Teknologi — Network Notes" description="Tips, trik, dan catatan seputar networking, cybersecurity, serta infrastruktur teknologi." active="articles">
+  <section class="page-hero section-shell">
+    <div class="container page-hero-inner">
+      <div class="section-kicker"><span>FIELD NOTES</span><span>— ARCHIVE</span></div>
+      <h1>Catatan dan<br /><em>eksplorasi.</em></h1>
+      <p>Kumpulan insight, dokumentasi, dan hal-hal teknis yang menarik untuk dibagikan. Tidak harus rutin — yang penting bermanfaat.</p>
+    </div>
+  </section>
+  <section class="article-archive section-shell">
+    <div class="container">
+      {articles.length > 0 ? (
+        <div class="article-list">
+          {articles.map((article) => (
+            <a class="article-row" href={withBase(`/articles/${article.id}/`)}>
+              <span class="article-date mono">{dateLabel(article.data.pubDate)}</span>
+              <span class="article-main"><span class="article-category">{article.data.category}</span><strong>{article.data.title}</strong><small>{article.data.description}</small><span class="tag-list article-tags">{article.data.tags.map((tag) => <span>{tag}</span>)}</span></span>
+              <span class="article-arrow">↗</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-articles"><span class="mono">NO POSTS YET</span><p>Belum ada catatan yang dipublikasikan.</p></div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

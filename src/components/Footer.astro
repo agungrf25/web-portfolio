@@ -1,0 +1,14 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="brand footer-brand" href={withBase('/')} aria-label="Kembali ke beranda">
+      <span class="brand-mark">N<span>//</span></span>
+      <span class="brand-name">{site.shortName}</span>
+    </a>
+    <p>Dirancang dengan rasa ingin tahu<span class="footer-dot">.</span> Dibangun untuk terus belajar.</p>
+    <span class="footer-copy">© <span data-current-year>2026</span> {site.name}</span>
+  </div>
+</footer>

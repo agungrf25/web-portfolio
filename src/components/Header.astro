@@ -1,0 +1,37 @@
+---
+import { site } from '../data/site';
+import { withBase } from '../utils/paths';
+const { active = '' } = Astro.props;
+const links = [
+  { href: withBase('/#about'), label: 'Tentang', id: 'about' },
+  { href: withBase('/#focus'), label: 'Fokus', id: 'focus' },
+  { href: withBase('/articles/'), label: 'Catatan', id: 'articles' },
+  { href: withBase('/#contact'), label: 'Kontak', id: 'contact' },
+];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={withBase('/')} aria-label={`${site.name} — beranda`}>
+      <span class="brand-mark">N<span>//</span></span>
+      <span class="brand-name">{site.shortName}</span>
+    </a>
+
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Buka menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
+      {links.map((link) => (
+        <a href={link.href} class:list={[{ active: active === link.id }]}>{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-label="Ganti ke tema terang" title="Ganti tema">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.6 8.6 0 0 1 8.7 3.8 8.7 8.7 0 1 0 20.2 15.3Z"/></svg>
+      </button>
+      <a class="header-cta" href={withBase('/#contact')}>Let's connect <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>

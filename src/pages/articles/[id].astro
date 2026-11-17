@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { withBase } from '../../utils/paths';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  return articles.map((article) => ({ params: { id: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const dateLabel = new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }).format(article.data.pubDate);
+---
+<BaseLayout title={`${article.data.title} — Network Notes`} description={article.data.description} active="articles">
+  <article class="post-page section-shell">
+    <div class="container post-container">
+      <a class="back-link" href={withBase('/articles/')}>← Kembali ke semua catatan</a>
+      <header class="post-header">
+        <div class="section-kicker"><span>{article.data.category.toUpperCase()}</span><span>— {dateLabel}</span></div>
+        <h1>{article.data.title}</h1>
+        <p class="post-description">{article.data.description}</p>
+        <div class="tag-list">{article.data.tags.map((tag) => <span>{tag}</span>)}</div>
+      </header>
+      <div class="post-content prose"><Content /></div>
+      <div class="post-end">
+        <span class="mono">END OF NOTE</span>
+        <a class="underlined-link" href={withBase('/articles/')}>Baca catatan lainnya <span>↗</span></a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
