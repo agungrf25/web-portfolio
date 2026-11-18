@@ -47,6 +47,6 @@ jobs:
           port: 21
           local-dir: ./dist/
           server-dir: ./
-          dry-run: true
+          dry-run: false
           security: loose
           log-level: verbose
