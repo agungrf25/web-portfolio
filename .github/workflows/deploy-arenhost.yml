@@ -48,5 +48,5 @@ jobs:
           local-dir: ./dist/
           server-dir: ./
           dry-run: true
-          security: strict
+          security: loose
           log-level: verbose
