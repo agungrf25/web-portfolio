@@ -37,7 +37,7 @@ jobs:
           BASE_PATH: /
         run: npm run build
 
-      - name: Test FTPS deployment (dry run)
+      - name: Upload to ArenHost
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.ARENHOST_FTP_SERVER }}
@@ -49,4 +49,5 @@ jobs:
           server-dir: ./
           dry-run: false
           security: loose
+          timeout: 120000
           log-level: verbose
